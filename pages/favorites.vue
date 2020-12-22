@@ -93,7 +93,7 @@ export default Vue.extend({
   data () {
     return {
       isGridLayout: true,
-      favorites: []
+      favorites: [] as string[]
     }
   },
   mounted () {
@@ -101,7 +101,7 @@ export default Vue.extend({
       this.favorites = []
       return
     }
-    window.localStorage.favorites.replaceAll(/https:\/\//ig, '').split(',').forEach((arr) => {
+    window.localStorage.favorites.replaceAll(/https:\/\//ig, '').split(',').forEach((arr: any) => {
       this.favorites.push(arr.split(':'))
     })
   }
