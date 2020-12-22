@@ -6,7 +6,7 @@
       <div class="image-block--filter">
         <div class="container">
           <div class="image-block--top">
-            <nuxt-link class="profile" :to="`/users/@${unsplashImage.user.username}`">
+            <a class="profile" :href="`https://unsplash.com/@${unsplashImage.user.username}`" target="_blank">
               <img class="profile--avatar" :src="unsplashImage.user.profile_image.medium" alt="">
               <div class="profile--info">
                 <div class="profile-name">
@@ -16,7 +16,7 @@
                   @{{ unsplashImage.user.username }}
                 </div>
               </div>
-            </nuxt-link>
+            </a>
             <div class="actions">
               <div class="action--favorite action">
                 <svg width="25" height="25" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">

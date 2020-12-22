@@ -3,7 +3,7 @@
     <img :src="imageLink" class="image" loading="lazy" :alt="altDescription">
     <div class="image-overlay">
       <div class="overlay--elements">
-        <nuxt-link :to="`/users/${nickname}`" class="profile-info">
+        <a :href="`https://unsplash.com/${nickname}`" class="profile-info" target="_blank">
           <img :src="profileAvatarLink" :alt="nickname" class="avatar">
           <div class="profile-name">
             {{ profileName }}
@@ -11,7 +11,7 @@
           <div class="nickname">
             {{ nickname }}
           </div>
-        </nuxt-link>
+        </a>
         <div id="actions" class="actions">
           <div
             id="action--favorite"

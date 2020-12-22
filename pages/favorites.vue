@@ -63,7 +63,7 @@
               :key="photo[1]"
               :image-link="'https://' + photo[0]"
               :alt-description="photo.alt_description ? photo.alt_description : ''"
-              :profile-avatar-link="'https://' + 'https://' + photo[4]"
+              :profile-avatar-link="'https://' + photo[4]"
               :profile-name="photo[2]"
               :nickname="photo[3]"
               :photo-id="photo[1]"
