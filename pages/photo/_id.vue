@@ -39,6 +39,18 @@
             </div>
           </div>
           <div class="main-photo" :style="`background: url(${unsplashImage.urls.regular}) center/cover`" />
+          <h2 class="tags--title">
+            Похожие теги
+          </h2>
+          <div class="tags">
+            <div
+              v-for="tag in unsplashImage.tags"
+              :key="tag.title"
+              class="tag"
+            >
+              {{ tag.title }}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -102,8 +114,9 @@ export default Vue.extend({
   },
   async asyncData ({ $axios, route }) {
     const unsplashImage = await $axios.$get(`https://api.unsplash.com/photos/${route.params.id}?client_id=VGOGR8Y1jxdBDnqLjE_I_2t_LN1mQY33M5v7_VRmeS8`)
-    const unsplashSearch = await $axios.$get('https://api.unsplash.com/search/photos?client_id=VGOGR8Y1jxdBDnqLjE_I_2t_LN1mQY33M5v7_VRmeS8&per_page=18&query=' +
-      unsplashImage.alt_description)
+    const unsplashSearch = await $axios
+      .$get(`https://api.unsplash.com/search/photos?client_id=VGOGR8Y1jxdBDnqLjE_I_2t_LN1mQY33M5v7_VRmeS8&per_page=18&query=${unsplashImage.tags[0].title} 
+        ${unsplashImage.tags[1].title}`)
     return { unsplashSearch, unsplashImage }
   },
   data () {
@@ -134,14 +147,18 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 
+#app {
+  height: 100%
+}
+
 .image-block {
   display: block;
-  height: 90vh;
+  height: 750px;
   position: relative;
 }
 
 .image-block--filter {
-  background-color: #00000080;
+  background-color: #000000aa;
   position: absolute;
   height: 100%;
   width: 100%;
@@ -231,7 +248,7 @@ export default Vue.extend({
   display: block;
   border-radius: 8px;
   margin: 0 auto;
-  height: 60vh;
+  height: 480px;
   width: 100%;
   margin-bottom: 40px;
 }
@@ -254,6 +271,32 @@ h1.title {
   &:first-child {
     margin-left: 0;
   }
+}
+
+.tags--title {
+  text-align: center;
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 24px;
+}
+
+.tags {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  overflow: hidden;
+  height: 24px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  text-align: center;
+  font-size: 18px;
+  padding: 3px 6px;
+  margin-left: 12px;
+  border-radius: 5px;
+  background: #fff;
+  color: #828282;
 }
 
 @media only screen and (max-width: 768px) {
