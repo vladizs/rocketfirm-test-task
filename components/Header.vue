@@ -42,6 +42,7 @@
       <div class="search">
         <input
           id="image-searchbar"
+          v-model="searchInput"
           type="text"
           name="image-search"
           class="search--searchbar"
@@ -116,11 +117,12 @@ export default Vue.extend({
       expanded: this.isExpanded,
       searchHistory: [],
       historyActive: false,
-      searchActive: this.isExpanded
+      searchActive: this.isExpanded,
+      searchInput: ''
     }
   },
-  beforeMount () {
-    this.searchHistory = window.localStorage.searchHistory ? window.localStorage.searchHistory.split(',').reverse() : ''
+  mounted () {
+    this.searchHistory = window.localStorage.searchHistory ? window.localStorage.searchHistory.split(',').reverse() : []
   },
   methods: {
     toHistory () {
@@ -154,7 +156,7 @@ export default Vue.extend({
         return
       }
       const searchHistoryString = window.localStorage.searchHistory ? window.localStorage.searchHistory : ''
-      const searchHistoryArray = searchHistoryString.split(',').reverse()
+      const searchHistoryArray = searchHistoryString.length ? searchHistoryString.split(',').reverse() : []
       if (searchHistoryArray.length > 15) {
         searchHistoryArray.pop()
         searchHistoryArray.reverse().push(event.target.value)

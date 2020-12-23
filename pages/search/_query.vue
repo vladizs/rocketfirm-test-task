@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <FixedHeader :is-after-compact="true" />
-    <Header :is-expanded="false" />
+    <FixedHeader :is-after-compact="false" />
+    <Header :is-expanded="true" />
     <div class="container">
       <h1 class="title">
         Результаты по запросу "{{ $route.params.query }}"

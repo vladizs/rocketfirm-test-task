@@ -14,7 +14,7 @@
           @click="isGridLayout = true"
         />
       </div>
-      <div v-if="favorites.length" class="images">
+      <div v-if="favorites && favorites.length" class="images">
         <div
           v-if="isGridLayout"
           class="images--grid-layout"

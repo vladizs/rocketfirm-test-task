@@ -47,6 +47,7 @@
       <div class="search">
         <input
           id="image-searchbar-fixed"
+          v-model="searchInput"
           type="text"
           name="image-search"
           class="search--searchbar"
@@ -121,15 +122,18 @@ export default Vue.extend({
         'Health',
         'Arts & Culture'
       ],
+      searchInput: '',
       searchHistory: []
     }
   },
   beforeMount () {
     window.addEventListener('scroll', this.scrollHandler)
-    this.searchHistory = window.localStorage.searchHistory ? window.localStorage.searchHistory.split(',').reverse() : ''
   },
   beforeDestroy () {
     window.removeEventListener('scroll', this.scrollHandler)
+  },
+  mounted () {
+    this.searchHistory = window.localStorage.searchHistory ? window.localStorage.searchHistory.split(',').reverse() : []
   },
   methods: {
     scrollHandler () {
@@ -158,7 +162,7 @@ export default Vue.extend({
         return
       }
       const searchHistoryString = window.localStorage.searchHistory ? window.localStorage.searchHistory : ''
-      const searchHistoryArray = searchHistoryString.split(',').reverse()
+      const searchHistoryArray = searchHistoryString.length ? searchHistoryString.split(',').reverse() : []
       if (searchHistoryArray.length > 15) {
         searchHistoryArray.pop()
         searchHistoryArray.reverse().push(event.target.value)
