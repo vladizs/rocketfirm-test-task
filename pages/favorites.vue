@@ -183,6 +183,7 @@ export default Vue.extend({
 
   .column {
     width: 100%;
+    margin-left: 0;
     justify-content: center;
   }
 

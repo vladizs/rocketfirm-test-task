@@ -107,7 +107,7 @@ h1.title {
   display: block;
   text-align: center;
   margin: 110px auto 72px;
-  width: 80%;
+  width: 100%;
   font-size: 48px;
   font-weight: 700;
 }
@@ -180,11 +180,17 @@ h1.title {
 
   .column {
     width: 100%;
+    margin-left: 0;
     justify-content: center;
   }
 
   .layout-buttons {
     display: none;
+  }
+
+  h1.title {
+    margin: 80px auto 60px;
+    font-size: 36px;
   }
 }
 </style>

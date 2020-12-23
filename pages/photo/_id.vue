@@ -18,7 +18,10 @@
               </div>
             </a>
             <div class="actions">
-              <div class="action--favorite action">
+              <div
+                class="action--favorite action"
+                @click="favoritesAdd(unsplashImage.urls.regular, $route.params.id, unsplashImage.user.name, unsplashImage.user.username, unsplashImage.user.profile_image.medium)"
+              >
                 <svg width="25" height="25" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path id="icon/action/favorite_24px_2" d="M18.9121 28.7685C17.8354 29.746 16.1779 29.7461 15.1013 28.7544L14.9454 28.6127C7.50795 21.8836 2.64878 17.4777 2.83295 11.981C2.91795 9.57272 4.15045 7.26355 6.14795 5.90355C9.88795 3.35355 14.5063 4.54355 16.9996 7.46188C19.4929 4.54355 24.1113 3.33938 27.8513 5.90355C29.8488 7.26355 31.0813 9.57272 31.1663 11.981C31.3646 17.4777 26.4913 21.8835 19.0538 28.641L18.9121 28.7685Z" fill="#828282" />
                 </svg>
@@ -106,6 +109,24 @@ export default Vue.extend({
   data () {
     return {
       isGridLayout: true
+    }
+  },
+  methods: {
+    favoritesAdd (imageLink: string, photoId: string, profileName: string, nickname: string, profileAvatarLink: string) {
+      const favoritesList: string = window.localStorage.favorites
+      const data: string = imageLink.concat(':',
+        photoId, ':',
+        profileName, ':',
+        nickname, ':',
+        profileAvatarLink)
+      const favoritesArray = favoritesList ? favoritesList.split(',') : []
+      if (favoritesArray.includes(data)) {
+        favoritesArray.splice(favoritesArray.indexOf(data), 1)
+        window.localStorage.setItem('favorites', favoritesArray.toString())
+        return
+      }
+      favoritesArray.push(data)
+      window.localStorage.setItem('favorites', favoritesArray.toString())
     }
   }
 })
@@ -269,11 +290,18 @@ h1.title {
 
   .column {
     width: 100%;
+    margin-left: 0;
     justify-content: center;
   }
 
   .layout-buttons {
     display: none;
+  }
+
+  h1.title {
+    margin-top: 60px;
+    margin-bottom: 24px;
+    font-size: 24px;
   }
 
 }

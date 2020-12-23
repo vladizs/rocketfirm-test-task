@@ -174,18 +174,6 @@ export default Vue.extend({
 </script>
 
 <style lang="scss" scoped>
-@media only screen and (max-width: 768px) {
-  .header .header--top {
-    .logo--text {
-      display: none;
-    }
-
-    .action--text {
-      display: none;
-    }
-  }
-}
-
 header.header {
   display: block;
   width: 100%;
@@ -350,5 +338,30 @@ header.header.history-active .history{
 .nohistory {
   display: block;
   margin-bottom: 40px;
+}
+
+@media only screen and (max-width: 768px) {
+  .header .header--top {
+    .logo--text {
+      display: none;
+    }
+
+    .action--text {
+      display: none;
+    }
+  }
+  .search--searchbar {
+    font-size: 48px;
+  }
+
+  .suggestion {
+    margin-right: 18px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .search--suggestions {
+    height: 18px;
+  }
 }
 </style>
